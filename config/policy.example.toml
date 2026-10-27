@@ -1,0 +1,5 @@
+[offline_cache]
+# Hours a cached badge stays valid while the identity server is unreachable.
+# Allowed range 1-12. ADR: defaults to 8.
+window_hours = 8
+max_entries = 500
