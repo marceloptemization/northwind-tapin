@@ -19,3 +19,9 @@ class DevicePool:
 
     def check_in(self, device_id: str) -> None:
         self.devices[device_id] = DeviceState.WIPING
+        self._wipe(device_id)
+        self.devices[device_id] = DeviceState.READY
+
+    def _wipe(self, device_id: str) -> None:
+        # TODO: sign out managed apps, clear local session data (Android 16 path unverified)
+        pass
