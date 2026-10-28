@@ -31,3 +31,16 @@ class SessionBroker:
 
     def end(self, session: Session) -> None:
         session.state = SessionState.ENDED
+
+    def switch(self, user_id: str) -> Session:
+        """Tap-to-switch: suspend the current user's session and start one for the next user.
+
+        Scaffold only. Suspend timeout, audit events and the admin setting land with the
+        tap-to-switch work items.
+        """
+        current = self.active()
+        if current is not None:
+            if current.user_id == user_id:
+                return current
+            current.state = SessionState.SUSPENDED
+        return self.start(user_id)
